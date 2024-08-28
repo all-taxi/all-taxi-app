@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Button } from "react-native";
-import { NavigationProp } from "../../types/navigation";
-import { ROUTES } from "../../constants/routes";
+import { NavigationProp } from "@types/navigation";
+import { ROUTES } from "@constants/routes";
 
 type Props = {
   navigation: NavigationProp;

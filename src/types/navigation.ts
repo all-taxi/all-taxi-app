@@ -1,4 +1,4 @@
-import { RouteName, ROUTES } from "../constants/routes";
+import { RouteName, ROUTES } from "@constants/routes";
 import { StackNavigationProp } from "@react-navigation/stack";
 
 export type RootStackParamList = {
