@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import styles from "./styles";
+import styles, { fixedStyles } from "./styles";
 
 interface AudioGuideHeaderProps {
   message: string;
@@ -9,7 +9,7 @@ interface AudioGuideHeaderProps {
 
 const AudioGuideHeader: React.FC<AudioGuideHeaderProps> = ({ message }) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, fixedStyles.header]}>
       <Text style={styles.icon}>
         <Ionicons name="volume-medium" size={40} color="black" />
       </Text>
