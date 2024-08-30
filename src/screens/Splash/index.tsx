@@ -10,12 +10,6 @@ const SplashScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.title}>
-        <Image
-          source={{
-            uri: "https://all-taxi.s3.ap-northeast-2.amazonaws.com/Group+1.png",
-          }}
-          style={styles.logoImage}
-        />
         <Logo width={100} height={100} />
         <Text style={styles.titleText}>올택시</Text>
         <Text style={styles.introText}>
@@ -23,7 +17,8 @@ const SplashScreen = () => {
         </Text>
 
         <ActivityIndicator size="large" color={theme.colors.background} />
-        <FamilyImage width={380} height={200} />
+
+        <FamilyImage width={380} height={200} style={styles.familyImage} />
       </View>
 
       <View style={styles.info}>

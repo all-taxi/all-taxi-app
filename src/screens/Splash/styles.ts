@@ -9,8 +9,9 @@ export default StyleSheet.create({
   title: {
     flex: 0.8,
     backgroundColor: theme.colors.primary,
-    justifyContent: "space-between",
+    justifyContent: "flex-end", // FamilyImage가 info 바로 위에 오도록 설정
     alignItems: "center",
+    paddingBottom: 10, // FamilyImage와 info 사이의 간격을 조정
   },
   logoImage: {
     width: 100,
@@ -23,6 +24,9 @@ export default StyleSheet.create({
     height: 182,
     resizeMode: "contain",
     marginBottom: -280,
+  },
+  familyImage: {
+    marginBottom: -30, // FamilyImage와 info 사이의 간격을 조정
   },
   titleText: {
     fontSize: 50,
