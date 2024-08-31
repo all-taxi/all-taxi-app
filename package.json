@@ -2,7 +2,7 @@
   "name": "all-taxi",
   "version": "1.0.0",
   "main": "expo/AppEntry.js",
-  "homepage": "https://kimgoat.github.io/all-taxi-app",
+  "homepage": "https://all-taxi.github.io/all-taxi-app",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
