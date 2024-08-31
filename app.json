@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "all-taxi",
-    "slug": "all-taxi",
+    "slug": "all-taxi-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,6 +22,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c79f1370-34dc-41d1-a99c-e8b3d7e7b36a"
+      }
+    },
+    "owner": "all-taxi"
   }
 }
