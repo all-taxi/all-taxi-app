@@ -54,7 +54,9 @@ jobs:
 
       - name: 🌐 Build Web Version
         if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: npx expo export --platform web
+        run: |
+          npx expo export --platform web
+          cp dist/index.html dist/404.html
 
       - name: 🚀 Deploy to GitHub Pages
         if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -62,3 +64,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          force_orphan: true
