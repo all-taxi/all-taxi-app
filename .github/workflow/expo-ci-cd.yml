@@ -54,11 +54,11 @@ jobs:
 
       - name: 🌐 Build Web Version
         if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: npx expo build:web
+        run: npx expo export --platform web
 
       - name: 🚀 Deploy to GitHub Pages
         if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./web-build
+          publish_dir: ./dist
