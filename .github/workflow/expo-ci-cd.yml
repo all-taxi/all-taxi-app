@@ -7,9 +7,25 @@ on:
     branches: [main]
 
 jobs:
-  build-test-deploy:
-    name: Build, Test, and Deploy
+  build-deploy:
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Expo CLI
+        run: npm install -g expo-cli
+      - name: Build
+        run: expo export -p web
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          force_orphan: true
 
     steps:
       - name: 🏗 Checkout repository
@@ -53,15 +69,13 @@ jobs:
         run: eas build --platform ios --non-interactive
 
       - name: 🌐 Build Web Version
-        if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: |
-          npx expo export --platform web
-          cp dist/index.html dist/404.html
+          run: |
+            expo export -p web
+            cp dist/index.html dist/404.html
 
       - name: 🚀 Deploy to GitHub Pages
-        if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          force_orphan: true
+          uses: peaceiris/actions-gh-pages@v3
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: ./dist
+

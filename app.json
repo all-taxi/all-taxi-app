@@ -11,6 +11,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "experiments": {
+      "baseUrl": "/all-taxi-app"
+    },
     "ios": {
       "supportsTablet": true
     },
@@ -21,7 +24,10 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "output": "server",
+      "bundler": "metro",
+      "publicPath": "/all-taxi-app/"
     },
     "extra": {
       "eas": {
