@@ -7,7 +7,6 @@ import { RootStackParamList } from "@types/navigation";
 import HomeScreen from "@screens/Home/index";
 import DetailScreen from "@screens/Detail/index";
 import useFontsLoader from "@hooks/useFontsLoader";
-import FontTest from "@components/test/FontTest";
 import SplashScreen from "@screens/Splash";
 import TaxiMatchScreen from "@screens/TaxiMatch";
 
@@ -38,10 +37,9 @@ const App = () => {
           headerShown: false, // 모든 화면에서 헤더를 숨김
         }}
       >
-        <Stack.Screen name={ROUTES.HOME} component={TaxiMatchScreen} />
+        <Stack.Screen name={ROUTES.HOME} component={HomeScreen} />
         <Stack.Screen name={ROUTES.DETAIL} component={DetailScreen} />
       </Stack.Navigator>
-      {/* <FontTest /> */}
     </NavigationContainer>
   );
 };
