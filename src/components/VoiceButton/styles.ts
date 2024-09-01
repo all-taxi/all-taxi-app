@@ -5,6 +5,10 @@ export default StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
+    position: "absolute",
+    zIndex: 99,
+    bottom: 0,
+    width: "100%",
   },
   button: {
     width: 180,
