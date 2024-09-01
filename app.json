@@ -34,6 +34,7 @@
         "projectId": "c79f1370-34dc-41d1-a99c-e8b3d7e7b36a"
       }
     },
-    "owner": "all-taxi"
+    "owner": "all-taxi",
+    "plugin": ["expo-location"]
   }
 }
