@@ -8,22 +8,21 @@ import HomeScreen from "@screens/Home/index";
 import DetailScreen from "@screens/Detail/index";
 import useFontsLoader from "@hooks/useFontsLoader";
 import SplashScreen from "@screens/Splash";
-import TaxiMatchScreen from "@screens/TaxiMatch";
+import { useLocationStore } from "@states/locationStore";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
 const App = () => {
   const [fontsLoaded] = useFontsLoader();
   const [locationLoaded, setLocationLoaded] = useState(false);
+  const fetchLocation = useLocationStore((state) => state.fetchLocation); // 현재 위치 저장 (테스트코드)
 
-  // 3초 후에 locationLoaded를 true로 변경
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const loadLocation = async () => {
+      await fetchLocation();
       setLocationLoaded(true);
-    }, 3000);
-
-    // 컴포넌트가 언마운트될 때 타이머를 정리
-    return () => clearTimeout(timer);
+    };
+    loadLocation();
   }, []);
 
   if (!fontsLoaded || !locationLoaded) {
