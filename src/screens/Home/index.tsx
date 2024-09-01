@@ -1,10 +1,11 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { NavigationProp } from "@types/navigation";
-import { ROUTES } from "@constants/routes";
-
 import VoiceButton from "@components/VoiceButton/VoiceButton";
 import AudioGuideHeader from "@components/AudioGuideHeader/AudioGuideHeader";
+import MapView from "@components/Map/index";
+import { ROUTES } from "@constants/routes";
+import NavButton from "@components/VoiceButton/NavButton";
 
 type Props = {
   navigation: NavigationProp;
@@ -12,15 +13,29 @@ type Props = {
 
 const HomeScreen = ({ navigation }: Props) => {
   return (
-    <View>
-      <AudioGuideHeader message="기사님이 찾기 쉽도록 상의를 촬영해주세요" />
-      <VoiceButton />
-      <Button
-        title="Go to Detail"
-        onPress={() => navigation.navigate(ROUTES.DETAIL)}
-      />
+    <View style={styles.container}>
+      <View style={styles.map}>
+        <MapView />
+        {/* <MapView x="126.978" y="37.5665" /> */}
+      </View>
+
+      <AudioGuideHeader message="어디로 갈까요?" />
+      <NavButton onPress={() => navigation.navigate(ROUTES.DETAIL)} />
     </View>
   );
 };
 
 export default HomeScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  map: {
+    flex: 1,
+    width: "100%",
+
+    zIndex: 99,
+    backgroundColor: "pink",
+  },
+});
