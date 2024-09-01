@@ -12,8 +12,8 @@ export const useMapLogic = (x?: string, y?: string) => {
     longitude: location?.coords?.longitude ?? 126.978,
   });
   const [destination, setDestination] = useState<Coordinate>({
-    latitude: Number(y),
-    longitude: Number(x),
+    latitude: y ? Number(y) : 0,
+    longitude: x ? Number(x) : 0,
   });
 
   useEffect(() => {
@@ -35,14 +35,10 @@ export const useMapLogic = (x?: string, y?: string) => {
     }
   };
 
-  useEffect(() => {
-    fetchRouteData();
-  }, []);
-
   const { latitudeDelta, longitudeDelta } =
     destination.latitude !== 0 && destination.longitude !== 0
       ? calculateDelta(origin, destination)
-      : { latitudeDelta: 0.05, longitudeDelta: 0.05 };
+      : { latitudeDelta: 0.02, longitudeDelta: 0.02 };
 
   const initialRegion =
     destination.latitude !== 0 && destination.longitude !== 0
