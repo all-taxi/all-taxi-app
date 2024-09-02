@@ -5,11 +5,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { ROUTES } from "@constants/routes";
 import { RootStackParamList } from "@types/navigation";
 import HomeScreen from "@screens/Home/index";
-import DetailScreen from "@screens/Detail/index";
 import useFontsLoader from "@hooks/useFontsLoader";
 import SplashScreen from "@screens/Splash";
 import { useLocationStore } from "@states/locationStore";
-import VocieChatScreen from "@screens/VoiceChat";
+import VoiceChatScreen from "@screens/VoiceChat/index";
+import DestinationListScreen from "@screens/DestinationList";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -38,8 +38,11 @@ const App = () => {
         }}
       >
         <Stack.Screen name={ROUTES.HOME} component={HomeScreen} />
-        <Stack.Screen name={ROUTES.VOICE_CHAT} component={VocieChatScreen} />
-        <Stack.Screen name={ROUTES.DETAIL} component={DetailScreen} />
+        <Stack.Screen name={ROUTES.VOICE_CHAT} component={VoiceChatScreen} />
+        <Stack.Screen
+          name={ROUTES.DESTINATIONLIST}
+          component={DestinationListScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
