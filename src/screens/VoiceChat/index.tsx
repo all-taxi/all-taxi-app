@@ -1,27 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import { View, Text, ScrollView } from "react-native";
 import { NavigationProp } from "@types/navigation";
 import { ROUTES } from "@constants/routes";
 import VoiceButton from "@components/VoiceButton/VoiceButton";
 import styles from "./styles";
 import AudioGuideHeader from "@components/AudioGuideHeader/AudioGuideHeader";
+import useDestinationStore from "@states/destinationStore";
 
 type Props = {
   navigation: NavigationProp;
 };
 
-const VocieChatScreen = ({ navigation }: Props) => {
+const VoiceChatScreen = ({ navigation }: Props) => {
   const [recognizedText, setRecognizedText] = useState("");
+  const [serverMessage, setServerMessage] = useState("");
+  const [shouldSpeak, setShouldSpeak] = useState(false);
+  const prevServerMessageRef = useRef<string>("");
+  const { destination } = useDestinationStore();
 
-  const handleRecognizedTextChange = (text: string) => {
+  const handleServerMessageChange = useCallback((text: string) => {
+    setServerMessage(text);
+    if (text !== prevServerMessageRef.current) {
+      setShouldSpeak(true);
+      prevServerMessageRef.current = text;
+    }
+  }, []);
+
+  const handleRecognizedTextChange = useCallback((text: string) => {
     setRecognizedText(text);
-  };
+  }, []);
+
+  if (destination != null) {
+    navigation.navigate(ROUTES.DESTINATIONLIST);
+  }
 
   return (
     <View style={styles.container}>
-      <AudioGuideHeader message={"직접 말하기를 눌러 목적지를 말씀해주세요"} />
+      <AudioGuideHeader message={serverMessage} shouldSpeak={shouldSpeak} />
       <View style={styles.button}>
-        <VoiceButton onRecognizedTextChange={handleRecognizedTextChange} />
+        <VoiceButton
+          onServerMessageChange={handleServerMessageChange}
+          onRecognizedTextChange={handleRecognizedTextChange}
+        />
       </View>
       <ScrollView style={styles.speech}>
         <Text style={styles.txet}>{recognizedText}</Text>
@@ -30,4 +50,4 @@ const VocieChatScreen = ({ navigation }: Props) => {
   );
 };
 
-export default VocieChatScreen;
+export default VoiceChatScreen;
