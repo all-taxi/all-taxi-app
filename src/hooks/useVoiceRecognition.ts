@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAudioRecording } from "./useAudioRecording";
 import { useVoiceAnimationControl } from "./useVoiceAnimationControl";
 import { fetchSpeechToText } from "@services/speechToTextService";
+import { Platform } from "react-native";
 
 const useVoiceRecognition = () => {
   const [isListening, setIsListening] = useState(false);
@@ -25,7 +26,10 @@ const useVoiceRecognition = () => {
     stopAnimation();
     const audioFile = await stopRecording();
     if (audioFile) {
-      const transcript = await fetchSpeechToText(audioFile);
+      const transcript = await fetchSpeechToText(
+        audioFile,
+        Platform.OS === "web"
+      );
       setRecognizedText(transcript);
     }
   };

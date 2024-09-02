@@ -1,8 +1,21 @@
 import { GOOGLE_SPEECH_TO_TEXT_API_KEY } from "@env";
 
-export const fetchSpeechToText = async (audioFile: string) => {
+export const fetchSpeechToText = async (audioFile: string, isWeb: boolean) => {
   try {
     const API_KEY = GOOGLE_SPEECH_TO_TEXT_API_KEY;
+
+    const config = isWeb
+      ? {
+          encoding: "WEBM_OPUS",
+          sampleRateHertz: 48000,
+          languageCode: "ko-KR",
+        }
+      : {
+          encoding: "LINEAR16",
+          sampleRateHertz: 44100,
+          languageCode: "ko-KR",
+        };
+
     const response = await fetch(
       `https://speech.googleapis.com/v1/speech:recognize?key=${API_KEY}`,
       {
@@ -11,11 +24,7 @@ export const fetchSpeechToText = async (audioFile: string) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          config: {
-            encoding: "LINEAR16",
-            sampleRateHertz: 44100,
-            languageCode: "ko-KR",
-          },
+          config,
           audio: {
             content: audioFile,
           },
