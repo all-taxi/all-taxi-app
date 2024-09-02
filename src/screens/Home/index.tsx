@@ -1,12 +1,10 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { NavigationProp } from "@types/navigation";
-import VoiceButton from "@components/VoiceButton/VoiceButton";
 import AudioGuideHeader from "@components/AudioGuideHeader/AudioGuideHeader";
 import MapView from "@components/Map/index";
 import { ROUTES } from "@constants/routes";
 import NavButton from "@components/VoiceButton/NavButton";
-
 type Props = {
   navigation: NavigationProp;
 };
@@ -20,7 +18,7 @@ const HomeScreen = ({ navigation }: Props) => {
       </View>
 
       <AudioGuideHeader message="어디로 갈까요?" />
-      <NavButton onPress={() => navigation.navigate(ROUTES.DETAIL)} />
+      <NavButton onPress={() => navigation.navigate(ROUTES.VOICE_CHAT)} />
     </View>
   );
 };

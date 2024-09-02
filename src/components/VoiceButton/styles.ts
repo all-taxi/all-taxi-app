@@ -3,11 +3,12 @@ import { theme } from "@styles/theme";
 
 export default StyleSheet.create({
   container: {
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
     position: "absolute",
+    bottom: 35,
     zIndex: 99,
-    bottom: 0,
     width: "100%",
   },
   button: {

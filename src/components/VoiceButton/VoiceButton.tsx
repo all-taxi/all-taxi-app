@@ -7,9 +7,19 @@ import VoiceWaveform from "./VoiceWaveform";
 import useVoiceRecognition from "@hooks/useVoiceRecognition";
 import styles from "./styles";
 
-const VoiceButton: React.FC = () => {
+interface VoiceButtonProps {
+  onRecognizedTextChange: (text: string) => void;
+}
+
+const VoiceButton: React.FC<VoiceButtonProps> = ({
+  onRecognizedTextChange,
+}) => {
   const { isListening, recognizedText, toggleListening, animatedValue } =
     useVoiceRecognition();
+
+  React.useEffect(() => {
+    onRecognizedTextChange(recognizedText);
+  }, [recognizedText, onRecognizedTextChange]);
 
   return (
     <View style={styles.container}>
@@ -31,7 +41,6 @@ const VoiceButton: React.FC = () => {
           </Text>
         </Animated.View>
       </TouchableOpacity>
-      <Text style={styles.recognizedText}>{recognizedText}</Text>
     </View>
   );
 };

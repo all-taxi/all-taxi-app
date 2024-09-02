@@ -4,6 +4,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 export type RootStackParamList = {
   [ROUTES.HOME]: undefined;
   [ROUTES.DETAIL]: undefined;
+  [ROUTES.VOICE_CHAT]: undefined;
   // 다른 라우트들...
 };
 
