@@ -1,23 +1,16 @@
 import React from "react";
-import { View } from "react-native";
-import MapView, { Polyline, Marker, Region } from "react-native-maps";
+import { useMapLogic } from "@hooks/useMapLogic";
+import { MapViewProps } from ".";
 import styles from "./styles";
+import { View } from "react-native";
+import MapView, { Marker, Polyline } from "react-native-maps";
 import { theme } from "@styles/theme";
-import { Coordinate } from "@types/map";
 
-interface MapProps {
-  origin: Coordinate;
-  destination: Coordinate;
-  routeCoordinates: Coordinate[];
-  initialRegion: Region;
-}
-
-const Map: React.FC<MapProps> = ({
-  origin,
-  destination,
-  routeCoordinates,
-  initialRegion,
-}) => {
+const MobileMapView: React.FC<MapViewProps> = ({ x, y }) => {
+  const { origin, destination, routeCoordinates, initialRegion } = useMapLogic(
+    x,
+    y
+  );
   return (
     <View style={styles.container}>
       <MapView style={styles.map} initialRegion={initialRegion}>
@@ -43,4 +36,4 @@ const Map: React.FC<MapProps> = ({
   );
 };
 
-export default Map;
+export default MobileMapView;

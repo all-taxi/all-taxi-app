@@ -1,26 +1,21 @@
 import React from "react";
-import Map from "./Map";
-import { useMapLogic } from "@hooks/useMapLogic";
+import { Platform } from "react-native";
+import WebMapView from "./WebMapView";
+import MobileMapView from "./MobileMapView";
 
-interface MapViewProps {
+export interface MapViewProps {
   x?: string;
   y?: string;
 }
 
 const MapView: React.FC<MapViewProps> = ({ x, y }) => {
-  const { origin, destination, routeCoordinates, initialRegion } = useMapLogic(
-    x,
-    y
-  );
+  if (Platform.OS === "web") {
+    return <WebMapView x={"126.978"} y={"37.5665"} />;
+  } else {
+    return <WebMapView x={"126.978"} y={"37.5665"} />;
 
-  return (
-    <Map
-      origin={origin}
-      destination={destination}
-      routeCoordinates={routeCoordinates}
-      initialRegion={initialRegion}
-    />
-  );
+    // return <WebMapView x={x} y={y} />;
+  }
 };
 
 export default MapView;
