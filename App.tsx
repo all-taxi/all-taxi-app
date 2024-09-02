@@ -9,6 +9,7 @@ import DetailScreen from "@screens/Detail/index";
 import useFontsLoader from "@hooks/useFontsLoader";
 import SplashScreen from "@screens/Splash";
 import { useLocationStore } from "@states/locationStore";
+import VocieChatScreen from "@screens/VoiceChat";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -37,6 +38,7 @@ const App = () => {
         }}
       >
         <Stack.Screen name={ROUTES.HOME} component={HomeScreen} />
+        <Stack.Screen name={ROUTES.VOICE_CHAT} component={VocieChatScreen} />
         <Stack.Screen name={ROUTES.DETAIL} component={DetailScreen} />
       </Stack.Navigator>
     </NavigationContainer>
