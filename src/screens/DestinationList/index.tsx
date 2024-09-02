@@ -7,10 +7,10 @@ type Props = {
   navigation: NavigationProp;
 };
 
-const DetailScreen = ({ navigation }: Props) => {
+const DestinationListScreen = ({ navigation }: Props) => {
   return (
     <View>
-      <Text>Detail Screen</Text>
+      <Text>DestinationList</Text>
       <Button
         title="Go to Home"
         onPress={() => navigation.navigate(ROUTES.HOME)}
@@ -19,4 +19,4 @@ const DetailScreen = ({ navigation }: Props) => {
   );
 };
 
-export default DetailScreen;
+export default DestinationListScreen;
