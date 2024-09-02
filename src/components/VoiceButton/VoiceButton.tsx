@@ -9,17 +9,29 @@ import styles from "./styles";
 
 interface VoiceButtonProps {
   onRecognizedTextChange: (text: string) => void;
+  onServerMessageChange: (text: string) => void;
 }
 
 const VoiceButton: React.FC<VoiceButtonProps> = ({
   onRecognizedTextChange,
+  onServerMessageChange,
 }) => {
-  const { isListening, recognizedText, toggleListening, animatedValue } =
-    useVoiceRecognition();
+  const {
+    isListening,
+    recognizedText,
+    toggleListening,
+    animatedValue,
+    serverMessage,
+    destination,
+  } = useVoiceRecognition();
 
   React.useEffect(() => {
     onRecognizedTextChange(recognizedText);
   }, [recognizedText, onRecognizedTextChange]);
+
+  React.useEffect(() => {
+    onServerMessageChange(serverMessage);
+  }, [serverMessage, onServerMessageChange]);
 
   return (
     <View style={styles.container}>
