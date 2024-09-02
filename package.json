@@ -34,6 +34,7 @@
     "react-native-screens": "3.31.1",
     "react-native-svg": "15.2.0",
     "react-native-web": "^0.19.12",
+    "socket.io-client": "^4.7.5",
     "zustand": "^4.5.5"
   },
   "devDependencies": {
