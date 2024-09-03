@@ -6,7 +6,9 @@ export type RootStackParamList = {
   [ROUTES.DESTINATIONLIST]: undefined;
   [ROUTES.DESTINATION]: { place: Object; onBack: () => void };
   [ROUTES.VOICE_CHAT]: undefined;
-  [ROUTES.CAMERA]: { requestId: number };
+  [ROUTES.CAMERA]: undefined;
+  [ROUTES.TAXIMATCH]: undefined;
+  [ROUTES.TAXI]: undefined;
   // 다른 라우트들...
 };
 
