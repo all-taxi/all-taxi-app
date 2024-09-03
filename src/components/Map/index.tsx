@@ -10,9 +10,9 @@ export interface MapViewProps {
 
 const MapView: React.FC<MapViewProps> = ({ x, y }) => {
   if (Platform.OS === "web") {
-    return <WebMapView x={"126.978"} y={"37.5665"} />;
+    return <WebMapView x={x} y={y} />;
   } else {
-    return <WebMapView x={"126.978"} y={"37.5665"} />;
+    return <WebMapView x={x} y={y} />;
 
     // return <WebMapView x={x} y={y} />;
   }
