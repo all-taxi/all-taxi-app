@@ -53,7 +53,7 @@ const DestinationListScreen = ({ navigation }: Props) => {
             Authorization: `KakaoAK ${KAKAO_REST_API_KEY}`,
           },
           params: {
-            query: "서울역", // 음성 || 검색으로 전달받은 장소 키워드
+            query: destination, // 음성 || 검색으로 전달받은 장소 키워드
             x: location?.coords.longitude,
             y: location?.coords.latitude,
             size: 15, // 결과 수 제한 최대 15
