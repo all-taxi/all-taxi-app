@@ -1,16 +1,6 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  Alert,
-} from "react-native";
-import { KAKAO_REST_API_KEY } from "@env";
-
-import { FontAwesome, Ionicons, AntDesign } from "@expo/vector-icons";
-
+import React from "react";
+import { View, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation } from "@react-navigation/native";
 import { calculateTaxiFare } from "@utils/calculateTaxiFare";
@@ -18,6 +8,7 @@ import WebMapView from "@components/Map/WebMapView";
 import { theme } from "@styles/theme";
 import AudioGuideHeader from "@components/AudioGuideHeader/AudioGuideHeader";
 import { NavigationProp } from "@types/navigation";
+import { ROUTES } from "@constants/routes";
 
 type Props = {
   navigation: NavigationProp;
@@ -41,85 +32,19 @@ interface DestinationListItemProps {
   onBack: () => void;
 }
 
-interface IAddressItem {
-  road_address: {
-    address_name: string;
-    region_1depth_name: string;
-    region_2depth_name: string;
-    road_name: string;
-    underground_yn: string;
-    main_building_no: string;
-    sub_building_no: string;
-    building_name: string;
-    zone_no: string;
-  };
-  address: {
-    address_name: string;
-    region_1depth_name: string;
-    region_2depth_name: string;
-    mountain_yn: string;
-    main_address_no: string;
-    sub_address_no: string;
-  };
-}
-interface IAddress extends Array<IAddressItem> {}
-
 const DestinationScreen: React.FC<DestinationListItemProps> = ({
   place,
   onBack,
 }) => {
   const navigation = useNavigation<StackNavigationProp<Props>>();
 
-  const [address, setAddress] = useState<IAddress | undefined>();
-  const [openModal, setOpenModal] = useState(false);
-
-  const searchCoord = async () => {
-    try {
-      const response = await axios.get(
-        "https://dapi.kakao.com/v2/local/geo/coord2address.json",
-        {
-          headers: {
-            Authorization: `KakaoAK ${KAKAO_REST_API_KEY}`,
-          },
-          params: {
-            x: place.x,
-            y: place.y,
-          },
-        }
-      );
-
-      setAddress(response.data.documents);
-    } catch (error) {
-      console.error("Error searching Coord:", error);
-    }
-  };
-
-  useEffect(() => {
-    searchCoord();
-  }, []);
-
   const distanceInMeters = Number(place.distance);
   const isNightTime = false; // 주간 시간대
   const result = calculateTaxiFare(distanceInMeters, isNightTime);
 
-  // const sendDestination = async () => {
-  //   try {
-  //     const response = await axios.post("http://3.34.131.133:8080/api/create-request", {
-  //       userId: 2,
-  //       placeName: place.place_name,
-  //       address: place.address_name,
-  //       latitude: parseFloat(place.y),
-  //       longitude: parseFloat(place.x),
-  //     });
-  //     console.log("Response from backend:", response.data);
-  //     const requestId = response.data.requestId;
-  //     navigation.navigate('MyLocation', { requestId });
-
-  //   } catch (error) {
-  //     console.error("Error sending destination:", error);
-  //     Alert.alert("Error", "Failed to send destination.");
-  //   }
-  // };
+  const sendDestination = () => {
+    navigation.navigate(ROUTES.CAMERA);
+  };
 
   return (
     <View style={styles.container}>
@@ -149,9 +74,7 @@ const DestinationScreen: React.FC<DestinationListItemProps> = ({
       </View>
 
       <View style={styles.alter}>
-        <TouchableWithoutFeedback
-        // onPress={sendDestination}
-        >
+        <TouchableWithoutFeedback onPress={sendDestination}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>여기로 출발</Text>
           </View>
