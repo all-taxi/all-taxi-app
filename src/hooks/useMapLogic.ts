@@ -22,18 +22,18 @@ export const useMapLogic = (x?: string, y?: string) => {
         latitude: Number(y),
         longitude: Number(x),
       });
-      fetchRouteData();
+      // fetchRouteData();
     }
   }, [x, y]);
 
-  const fetchRouteData = async () => {
-    try {
-      const coordinates = await fetchRoute(origin, destination);
-      setRouteCoordinates(coordinates);
-    } catch (error) {
-      console.error("Error fetching route:", error);
-    }
-  };
+  // const fetchRouteData = async () => {
+  //   try {
+  //     const coordinates = await fetchRoute(origin, destination);
+  //     setRouteCoordinates(coordinates);
+  //   } catch (error) {
+  //     console.error("Error fetching route:", error);
+  //   }
+  // };
 
   const { latitudeDelta, longitudeDelta } =
     destination.latitude !== 0 && destination.longitude !== 0

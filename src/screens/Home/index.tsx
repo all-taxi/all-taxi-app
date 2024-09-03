@@ -13,8 +13,7 @@ const HomeScreen = ({ navigation }: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.map}>
-        {/* <MapView /> */}
-        {/* <MapView x="126.978" y="37.5665" /> */}
+        <MapView />
       </View>
 
       <AudioGuideHeader message="어디로 갈까요?" shouldSpeak={true} />
