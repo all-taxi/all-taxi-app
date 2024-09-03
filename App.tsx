@@ -10,6 +10,9 @@ import SplashScreen from "@screens/Splash";
 import { useLocationStore } from "@states/locationStore";
 import VoiceChatScreen from "@screens/VoiceChat/index";
 import DestinationListScreen from "@screens/DestinationList";
+import CameraScreen from "@screens/Camera";
+import TaxiMatchScreen from "@screens/TaxiMatch";
+import TaxiScreen from "@screens/Taxi";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -43,6 +46,9 @@ const App = () => {
           name={ROUTES.DESTINATIONLIST}
           component={DestinationListScreen}
         />
+        <Stack.Screen name={ROUTES.CAMERA} component={CameraScreen} />
+        <Stack.Screen name={ROUTES.TAXIMATCH} component={TaxiMatchScreen} />
+        <Stack.Screen name={ROUTES.TAXI} component={TaxiScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
